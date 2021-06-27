@@ -6,12 +6,25 @@ import { faMinusSquare } from '@fortawesome/free-solid-svg-icons'
 const ItemCount = (props) => {
     const [cantidad, setCantidad] = useState(props.initial);
 
-    function addCount(){
-        cantidad < props.stock ? setCantidad(cantidad + 1) : alert('máximo alcanzado');
+    const [plusBtn, setPlusBtn] = useState(true);
+    const [minusBtn, setMinusBtn] = useState(true);
+
+    function addCount(){        
+        if (cantidad < props.stock) 
+            setCantidad(cantidad + 1);
+        if (cantidad === props.stock)
+            setPlusBtn(false);
+
+        setMinusBtn(true)        
     };    
 
     function substractCount(){
-        cantidad > 0 ? setCantidad(cantidad - 1) : alert('mínimo alcanzado');
+        if (cantidad > 0)
+            setCantidad(cantidad - 1);
+        if (cantidad === 0)
+            setMinusBtn(false);
+
+        setPlusBtn(true);
     };
 
     return (
@@ -29,10 +42,12 @@ const ItemCount = (props) => {
                         <h2 class="title-font font-medium text-3xl text-gray-900">{cantidad}</h2>
                         
                         <button className="text-green-400"  onClick={addCount}>
-                            <FontAwesomeIcon icon={faPlusSquare} />
+                            <FontAwesomeIcon icon={faPlusSquare} />                            
                         </button>
+                        <span className={`inline-block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest ${plusBtn? "invisible" : "visible"}`}>Alcanzaste el máximo disponible</span>
+                        <span className={`inline-block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest ${minusBtn? "invisible" : "visible"}`}>Alcanzaste el mínimo disponible</span>
                     </div>
-                    <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
+                    <div className="text-center mt-2 leading-none flex-wrap justify-center absolute bottom-0 left-0 w-full py-4">                      
                         <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                             Cantidad disponible: {props.stock}
                         </h2>                       
