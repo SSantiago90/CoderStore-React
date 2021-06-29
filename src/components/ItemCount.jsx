@@ -34,7 +34,7 @@ const ItemCount = (props) => {
                
                 <div className="w-full pt-4">
                     <div className="h-full bg-gray-300 bg-opacity-75 px-8 pt-8 pb-6 rounded-lg overflow-hidden text-center relative">
-                        <h1 className="text-sm uppercase title-font text-gray-500 tracking-widest">Comprar Item</h1>
+                        <h1 className="text-sm uppercase title-font text-gray-500 tracking-widest">Agregar al carrito</h1>
                         <div className="flex flex-wrap mt-4 mb-6 -m-4 text-center">                                                
                             <button className="w-1/4 text-red-400" onClick={substractCount}>
                                 <FontAwesomeIcon icon={faMinusSquare} />
@@ -44,9 +44,9 @@ const ItemCount = (props) => {
                             <button className="w-1/4 text-green-400"  onClick={addCount}>
                                 <FontAwesomeIcon icon={faPlusSquare} />                            
                             </button>
-                            <div className="flex flex-wrap text-center">
-                                <span className={`inline-block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest ${plusBtn? "hidden" : ""}`}>Alcanzaste el máximo disponible</span>
-                                <span className={`inline-block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest ${minusBtn? "hidden" : ""}`}>Alcanzaste el mínimo disponible</span>
+                            <div className="h-6 w-full flex flex-wrap text-center">
+                                <span className={`w-full block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest ${plusBtn? "hidden" : "visible"}`}>Alcanzaste el máximo disponible</span>
+                                <span className={`w-full block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest ${minusBtn? "hidden" : "visible"}`}>Alcanzaste el mínimo</span>
                             </div>
                         </div>
                         <div className="text-center mt-2 leading-none flex-wrap justify-center absolute bottom-0 left-0 w-full py-4">                      
