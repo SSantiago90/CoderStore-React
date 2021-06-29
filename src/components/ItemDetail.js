@@ -45,8 +45,8 @@ export default function ItemDetail(props) {
             <ItemCount stock={props.stock} initial={1} />
           </div>
           <img
-            alt="ecommerce"
-            class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+            alt={props.title}
+            class="lg:w-1/2 w-full lg:h-auto h-32 object-scale-down object-center rounded"
             src={props.imgUrl}
           />
         </div>
