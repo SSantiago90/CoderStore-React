@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import ItemDetail from './ItemDetail';
+import {useParams} from 'react-router-dom';
 
 const DB_PRODUCTS = [
     {"id":1,"title":"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops","stock" : 6, "price":109.95,"description":"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday","category":"men's clothing","image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"},
@@ -24,15 +25,16 @@ const DB_PRODUCTS = [
     {"id":20,"title":"DANVOUY Womens T Shirt Casual Cotton Short","stock" : 12, "price":12.99,"description":"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.","category":"women's clothing","image":"https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg"}
 ]
 
-//creamos un numero aleatorio entre 0-20 para obtener un item cualquiera de nuestro listado
-const ID_ITEM_REQUESTED = Math.floor(Math.random() * (20));
 
 function crearPromesa() {
+    // tomamos el parametro :id de la URL para saber que item mostrar
+    const {id} = useParams();
+
     return new Promise((resolve, reject) => {  
     setTimeout(function(){        
-      const error = false;
+      const error = id > DB_PRODUCTS.length;
       if(!error){      
-        resolve(DB_PRODUCTS[ID_ITEM_REQUESTED]);  
+        resolve(DB_PRODUCTS[id-1]);  
       }
       reject("Error obteniendo los datos :(");
       }, 500);

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Item from './Item';
+import {useParams} from 'react-router-dom';
 
 // https://fakestoreapi.com
 // "mock" de una base de datos con productos
@@ -7,25 +8,33 @@ const DB_PRODUCTS = [{"id":1,"title":"Fjallraven - Foldsack No. 1 Backpack, Fits
 
 // Creamos una promesa que nos devuelva los datos de la "base de datos"
 // Simulamos la demora de solicitar datos a la red, demorando 500ms la promesa usando setTimeout()
-function crearPromesa() {
+function crearPromesa(categ) {
+   
     return new Promise((resolve, reject) => {  
     setTimeout(function(){        
       const error = false;
-      if(!error){      
-        resolve(DB_PRODUCTS);  
+      if(!error){                      
+        !categ ? 
+          resolve(DB_PRODUCTS)
+          : resolve(DB_PRODUCTS.filter( (item) =>{
+              return(item.category === categ)
+            }
+          ))  
       }
       reject("Error obteniendo los datos :(");
-      }, 2000);
+      }, 500);
     });     
   }
 
 // nuestro componente
 function ItemList(){
+    const {category} = useParams();
+
     //Inicializamos el estado con un array vacío
     const [items,setItems] = useState([]);
 
     // creamos la Promesa
-    let requestDatos = crearPromesa();
+    let requestDatos = crearPromesa(category);
 
     // una vez que la promesa se cumple se ejecuta .then(), y guardamos los datos recibidos en el estado
     requestDatos.then( function(items_promise){
@@ -36,20 +45,17 @@ function ItemList(){
         function(error){
           console.log(error);          
       })
-      // si tenemos código que se ejecuta independientemente del resultado de la promesa, lo escribimos en .finally()
-      .finally(
-          function(){
-            console.log('Promesa terminada')
-        }
-      )
+      
   
     return (
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-6 mx-auto">        
                 <div className="flex flex-wrap sm:-m-4 -mx-8 -mb-10">
+                {items.length === 0 && <h3>CARGANDO . . .</h3>}
                 {items.map( (itm,index) =>
                         <Item 
                             key={index}
+                            id={itm.id}
                             title={itm.title}
                             price={itm.price}
                             imgUrl={itm.image}

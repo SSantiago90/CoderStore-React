@@ -4,5 +4,6 @@
 @tailwind utilities;
 
 .dropdown:hover .dropdown-menu {
+    z-index: 99;
     display: block;
   }
