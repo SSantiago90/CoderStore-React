@@ -25,9 +25,7 @@ const DB_PRODUCTS = [
     {"id":20,"title":"DANVOUY Womens T Shirt Casual Cotton Short","stock" : 12, "price":12.99,"description":"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.","category":"women's clothing","image":"https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg"}
 ]
 
-
 function crearPromesa() {
-    // tomamos el parametro :id de la URL para saber que item mostrar
     const {id} = useParams();
 
     return new Promise((resolve, reject) => {  
@@ -41,29 +39,22 @@ function crearPromesa() {
     });     
   }
 
-// nuestro componente
-function ItemDetailContainer(){
-    //Inicializamos el estado con un array vacío
-    const [item,setItem] = useState(null);
+function ItemDetailContainer(){  
+    const [item,setItem] = useState(null);    
 
-    // creamos la Promesa
     let requestDatos = crearPromesa();
-
-    // una vez que la promesa se cumple se ejecuta .then(), y guardamos los datos recibidos en el estado
     requestDatos.then( function(items_promise){
-        setItem(items_promise);        
+      setItem(items_promise);        
       })
-      // si hay errores, los "atrapamos" en nuestro .catch()
       .catch(
         function(error){
           console.log(error);          
       })
-      // si tenemos código que se ejecuta independientemente del resultado de la promesa, lo escribimos en .finally()
       .finally(
           function(){
-            console.log('Promesa terminada')
+            console.info('Promesa terminada');
         }
-      )
+    );
   
     return (
         <section className="text-gray-600 body-font">

@@ -5,7 +5,7 @@ function About() {
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-col text-center w-full mb-20">
-            <h2 class="text-xs text-red-500 tracking-widest font-medium title-font mb-1">NOSOROS</h2>
+            <h2 class="text-xs text-red-500 tracking-widest font-medium title-font mb-1">NOSOTROS</h2>
             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Quiénes Somos</h1>
             <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam vel perferendis necessitatibus earum deleniti, aut, minima nobis repudiandae, odio numquam aspernatur! Veritatis maxime sunt facere id esse quidem temporibus? Velit.

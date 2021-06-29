@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ItemCount from "./ItemCount";
 import { Link, useHistory } from "react-router-dom";
 
@@ -6,7 +6,15 @@ import { faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function ItemDetail(props) {
-  let history = useHistory();
+  const [cantidad,setCantidad] = useState(0);
+
+  const navig = useHistory();
+
+  function onAdd(countValue){
+    setCantidad(countValue);
+    alert(`Agregaste ${countValue} items al carrito.`);
+  }
+
   return (
     <section class="relative text-gray-600 body-font overflow-hidden">
       <div class="container px-5 py-24 mx-auto">
@@ -42,7 +50,18 @@ export default function ItemDetail(props) {
               </span>
               {/* <button class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Comprar</button> */}
             </div>
-            <ItemCount stock={props.stock} initial={1} />
+            {cantidad === 0?
+              <ItemCount 
+                stock={props.stock} 
+                initial={1} 
+                onAdd={onAdd}
+              />
+            : 
+            <button 
+                className="flex mx-auto mt-2 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">
+                Finalizar compra
+            </button>
+            }
           </div>
           <img
             alt={props.title}
@@ -51,7 +70,7 @@ export default function ItemDetail(props) {
           />
         </div>
         <button
-          onClick={() => history.go(-1)}
+          onClick={() => navig.go(-1)}
           className="flex-shrink-0 text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mt-10 sm:mt-0"
         >
           Volver

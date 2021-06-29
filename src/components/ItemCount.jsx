@@ -9,6 +9,10 @@ const ItemCount = (props) => {
     const [plusBtn, setPlusBtn] = useState(true);
     const [minusBtn, setMinusBtn] = useState(true);
 
+    function addToCart(){
+        props.onAdd(cantidad);
+    }
+
     function addCount(){        
         if (cantidad < props.stock) 
             setCantidad(cantidad + 1);
@@ -44,15 +48,22 @@ const ItemCount = (props) => {
                             <button className="w-1/4 text-green-400"  onClick={addCount}>
                                 <FontAwesomeIcon icon={faPlusSquare} />                            
                             </button>
-                            <div className="h-6 w-full flex flex-wrap text-center">
+                            <div className="h-6 mt-1 w-full flex flex-wrap text-center">
                                 <span className={`w-full block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest ${plusBtn? "hidden" : "visible"}`}>Alcanzaste el máximo disponible</span>
                                 <span className={`w-full block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest ${minusBtn? "hidden" : "visible"}`}>Alcanzaste el mínimo</span>
                             </div>
                         </div>
-                        <div className="text-center mt-2 leading-none flex-wrap justify-center absolute bottom-0 left-0 w-full py-4">                      
+                        <div className="text-center mt-2 leading-none flex-wrap justify-centerw-full py-2">                      
                             <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                 Cantidad disponible: {props.stock}
                             </h2>                       
+                        </div>
+                        <div>
+                            <button 
+                                onClick={addToCart}
+                                className="flex mx-auto mt-2 text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">
+                                Agregar al Carrito
+                            </button>
                         </div>
                     </div>  
                 </div>
