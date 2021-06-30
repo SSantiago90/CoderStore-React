@@ -25,9 +25,8 @@ export const CartProvider = ({ children }) => {
 
   const qtyInCart = (id) =>{
         let prod = products.find( (item) =>{
-            return item["id"] == id
+            return item["id"] === id
         });
-        console.log(products);
         return prod.quantity;
   }
 

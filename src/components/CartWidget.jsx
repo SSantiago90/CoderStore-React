@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
+import {Link} from 'react-router-dom';
 import useCartContext from "../context/CartContext";
 
 const CartWidget = () => {
@@ -10,7 +11,9 @@ const CartWidget = () => {
 
     return(
       <div className="dropdown inline-block relative">
-          <FontAwesomeIcon icon={faShoppingCart} />
+          <Link to="/cart">
+            <FontAwesomeIcon icon={faShoppingCart} />
+          </Link>
           {itemsInCart > 0 &&
           <div className="w-10 ml-2 h-8 inline-flex items-center justify-center rounded-full bg-red-500 text-red-100 mb-1">
               <p>{itemsInCart}</p>
