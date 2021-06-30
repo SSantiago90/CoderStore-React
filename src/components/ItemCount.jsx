@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , {useState, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 import { faMinusSquare } from '@fortawesome/free-solid-svg-icons'
@@ -8,6 +8,12 @@ const ItemCount = (props) => {
 
     const [plusBtn, setPlusBtn] = useState(true);
     const [minusBtn, setMinusBtn] = useState(true);
+
+    useEffect( ()=>{
+        setCantidad(props.initial);
+        setPlusBtn(true);
+        setMinusBtn(true);
+    },[])
 
     function addToCart(){
         props.onAdd(cantidad);
@@ -59,11 +65,19 @@ const ItemCount = (props) => {
                             </h2>                       
                         </div>
                         <div>
-                            <button 
+                            {cantidad > 0?
+                            <button                                 
                                 onClick={addToCart}
                                 className="flex mx-auto mt-2 text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">
                                 Agregar al Carrito
                             </button>
+                            :
+                            <button  
+                                disabled                                                               
+                                className="flex mx-auto mt-2 text-grey-400 bg-grey-800 border-0 py-2 px-8  rounded text-lg">
+                                Agregar al Carrito
+                            </button>
+                            }
                         </div>
                     </div>  
                 </div>
