@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ItemCount from "./ItemCount";
 import { Link, useHistory } from "react-router-dom";
 import useCartContext from "../context/CartContext";
@@ -14,7 +14,7 @@ export default function ItemDetail(props) {
   function onAdd(countValue){
     isInCart(props.id)?
       alert('Ya agregaste ese item al carrito!')
-      : addItem( props.id, countValue);    
+      : addItem( props, countValue);    
   }
 
   return (
@@ -67,7 +67,7 @@ export default function ItemDetail(props) {
             <div>
               <button 
                   className="flex mx-auto mt-2 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
-                  Finalizar compra
+                  <Link to="/cart">Finalizar compra</Link>
               </button>
               <div className="text-center mt-2 leading-none flex-wrap justify-centerw-full py-2">                      
               <span className="w-full block py-1 px-2 rounded bg-green-50 text-green-500 text-xs font-medium tracking-widest">
