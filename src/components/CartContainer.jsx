@@ -32,30 +32,30 @@ const CartContainer = () => {
                     <span className="w-2/3 text-center m-auto block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest">Tu carrito está vacío</span>             
                 }
                 
-                {cartItems && cartItems.length !== 0 &&                  
+                {cartItems && cartItems.length !== 0 &&     (           
                 
-                <div>
+                <div class="m-auto">
                     <table class="min-w-full table-auto">
                         <thead class="justify-between">
                         <tr class="bg-gray-800">
-                            <th class="px-16 py-2">
+                            <th class="px-8 py-2">
                             <span class="text-white"></span>
                             </th>
-                            <th class="px-16 py-2">
+                            <th class="px-20 py-2">
                             <span class="text-white">Producto</span>
                             </th>
-                            <th class="px-16 py-2">
+                            <th class="px-8 py-2">
                             <span class="text-white">Enlace</span>
                             </th>
-                            <th class="px-16 py-2">
+                            <th class="px-8 py-2">
                             <span class="text-white">Precio</span>
                             </th>
 
-                            <th class="px-16 py-2">
+                            <th class="px-6 py-2">
                             <span class="text-white">Cantidad</span>
                             </th>
 
-                            <th class="px-16 py-2">
+                            <th class="px-8 py-2">
                             <span class="text-white">Total</span>
                             </th>
                         </tr>
@@ -75,9 +75,17 @@ const CartContainer = () => {
                         }  
                         </tbody>
                     </table>
-                    </div>
-                }
+                    <div className="mt-8">
+                        <button                
+                        className="flex mx-auto mt-2 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
+                        ¡Comprar!
+                        </button>
+                    </div>                
                 </div>
+                    
+                )}
+                </div>
+               
             </div>
       </section>
     );

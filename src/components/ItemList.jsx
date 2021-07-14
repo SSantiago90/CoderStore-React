@@ -1,28 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import Item from './Item';
-import {getFirestore} from '../firebase'
+import {getFirestore} from '../firebase';
+import {useParams} from 'react-router-dom';
 
 function ItemList(){
-
   const [items,setItems] = useState(null);    
   const [isLoading, setLoading] = useState(false)
+  const {category} = useParams();
   
-  useEffect(() => {
+  useEffect(() => {    
+      
       setLoading(true);
-      const db = getFirestore();
-      const productsRef  = db.collection("products2")
+      const db = getFirestore();    
+            const queryFirebase = category ? 
+        db.collection("products2").where("category", "==", category)
+        : db.collection("products2");
 
-      productsRef.get().then( (querySnapshot ) => {
+      queryFirebase.get().then( (querySnapshot ) => {
             if(querySnapshot.size === 0) {
               console.log ( 'Sin resultados' );
               setItems([]);
             }
             let documents = querySnapshot.docs.map(doc => {
               let data = doc.data();
-              let id = doc.id;
-              console.log({id,...data});
-              return {id,...data};
-              
+              let id = doc.id;              
+              return {id,...data};              
             }
             );
             setItems(documents);

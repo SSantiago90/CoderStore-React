@@ -4,15 +4,8 @@ import {getFirestore} from './../firebase';
 import {useParams} from 'react-router-dom';
 
 function ItemDetailContainer(){  
-    const [item,setItem] = useState(null);    
     const {id} = useParams();
-
-    const cliente = {
-      name: 'Santiago',
-      adress: 'CoderHouse 123',
-      mail: 'salkinsantiago@gmail.com',            
-    }
-
+    const [item,setItem] = useState(null);    
     const [isLoading, setLoading] = useState(false);
     const [notFound, setNotFound] = useState(false);
 
@@ -52,11 +45,7 @@ function ItemDetailContainer(){
                         category={item.category}
                         stock={item.stock}
                     /> 
-                        <div>
-                        <button                
-                          className="flex mx-auto mt-2 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
-                          ¡Comprar!
-                        </button>
+                        <div>                       
                       </div>
                     </div>
                 }               
