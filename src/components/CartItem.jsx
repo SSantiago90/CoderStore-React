@@ -20,7 +20,7 @@ const CartItem = (props) => {
       <td>
         <span className="text-center ml-2 font-semibold">{props.title}</span>
       </td>
-      <td className="px-6 py-2">
+      <td className="px-8 py-2">
         <span>{`$ ${props.price}`}</span>
       </td>
       <td className="px-6 py-2">
