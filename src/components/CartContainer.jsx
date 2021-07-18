@@ -37,33 +37,33 @@ const CartContainer = () => {
                 
                 {cartItems && cartItems.length !== 0 &&     (           
                 
-                <div class="m-auto">
-                    <table class="min-w-full table-auto">
-                        <thead class="justify-between">
-                        <tr class="bg-gray-800">
-                            <th class="px-8 py-2">
-                            <span class="text-white"></span>
+                <div className="m-auto">
+                    <table className="min-w-full table-auto">
+                        <thead className="justify-between">
+                        <tr className="bg-gray-800">
+                            <th className="px-8 py-2">
+                            <span className="text-white"></span>
                             </th>
-                            <th class="px-20 py-2">
-                            <span class="text-white">Producto</span>
+                            <th className="px-20 py-2">
+                            <span className="text-white">Producto</span>
                             </th>                           
-                            <th class="px-8 py-2">
-                            <span class="text-white">Precio</span>
+                            <th className="px-8 py-2">
+                            <span className="text-white">Precio</span>
                             </th>
 
-                            <th class="px-6 py-2">
-                            <span class="text-white">Cantidad</span>
+                            <th className="px-6 py-2">
+                            <span className="text-white">Cantidad</span>
                             </th>
 
-                            <th class="px-8 py-2">
-                            <span class="text-white">Total</span>
+                            <th className="px-8 py-2">
+                            <span className="text-white">Total</span>
                             </th>
-                            <th class="px-8 py-2">
-                                <span class="text-white">Acciones</span>
+                            <th className="px-8 py-2">
+                                <span className="text-white">Acciones</span>
                             </th> 
                         </tr>
                         </thead>
-                        <tbody class="bg-gray-200">
+                        <tbody className="bg-gray-200">
                                        
                         {cartItems && cartItems.map( (item,index) =>
                                 <CartItem          

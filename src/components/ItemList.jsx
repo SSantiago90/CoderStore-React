@@ -13,8 +13,9 @@ function ItemList(){
       setLoading(true);
       const db = getFirestore();    
             const queryFirebase = category ? 
-        db.collection("products2").where("category", "==", category)
-        : db.collection("products2");
+        db.collection("products").where("category", "==", category)
+        : db.collection("products")
+        .orderBy("index");
 
       queryFirebase.get().then( (querySnapshot ) => {
             if(querySnapshot.size === 0) {

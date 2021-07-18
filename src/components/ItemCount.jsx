@@ -49,7 +49,7 @@ const ItemCount = (props) => {
                             <button className="w-1/4 text-red-400" onClick={substractCount}>
                                 <FontAwesomeIcon icon={faMinusSquare} />
                             </button>
-                            <h2 class="w-1/2 title-font font-medium text-3xl text-gray-900">{cantidad}</h2>
+                            <h2 className="w-1/2 title-font font-medium text-3xl text-gray-900">{cantidad}</h2>
                             
                             <button className="w-1/4 text-green-400"  onClick={addCount}>
                                 <FontAwesomeIcon icon={faPlusSquare} />                            

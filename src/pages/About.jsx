@@ -2,12 +2,12 @@ import React from "react";
 
 function About() {
   return (
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-        <div class="flex flex-col text-center w-full mb-20">
-            <h2 class="text-xs text-red-500 tracking-widest font-medium title-font mb-1">NOSOTROS</h2>
-            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Quiénes Somos</h1>
-            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+    <section className="text-gray-600 body-font">
+        <div className="container px-5 py-24 mx-auto">
+        <div className="flex flex-col text-center w-full mb-20">
+            <h2 className="text-xs text-red-500 tracking-widest font-medium title-font mb-1">NOSOTROS</h2>
+            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Quiénes Somos</h1>
+            <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam vel perferendis necessitatibus earum deleniti, aut, minima nobis repudiandae, odio numquam aspernatur! Veritatis maxime sunt facere id esse quidem temporibus? Velit.
                 Ratione dolorum recusandae porro in cum totam iste, eveniet reprehenderit dolorem sequi inventore expedita esse veniam deleniti nemo adipisci at! Accusamus molestiae quisquam tempore quaerat veniam consequuntur dolores omnis asperiores?
                 Perferendis veniam necessitatibus dicta excepturi fuga delectus perspiciatis beatae. Porro, libero, quas ducimus nobis labore vel animi pariatur quo harum modi voluptatibus molestias, eligendi asperiores inventore! Nesciunt architecto aperiam necessitatibus?
