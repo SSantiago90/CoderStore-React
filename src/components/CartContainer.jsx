@@ -4,9 +4,12 @@ import useCartContext from "../context/CartContext";
 
 
 const CartContainer = () => {
-    const {products} = useCartContext();
+    const {products, removeFromCart} = useCartContext();
     const [cartItems , setCartItems] = useState(null);
 
+    function onDelete(id){
+        setCartItems(removeFromCart(id));        
+    }
     
     useEffect(() => {        
         if (products){
@@ -15,7 +18,7 @@ const CartContainer = () => {
         else {
             setCartItems([]);        
         }
-    }, []);
+    }, [products]);
 
     return (
          <section className="text-gray-600 body-font">
@@ -43,10 +46,7 @@ const CartContainer = () => {
                             </th>
                             <th class="px-20 py-2">
                             <span class="text-white">Producto</span>
-                            </th>
-                            <th class="px-8 py-2">
-                            <span class="text-white">Enlace</span>
-                            </th>
+                            </th>                           
                             <th class="px-8 py-2">
                             <span class="text-white">Precio</span>
                             </th>
@@ -58,6 +58,9 @@ const CartContainer = () => {
                             <th class="px-8 py-2">
                             <span class="text-white">Total</span>
                             </th>
+                            <th class="px-8 py-2">
+                                <span class="text-white">Acciones</span>
+                            </th> 
                         </tr>
                         </thead>
                         <tbody class="bg-gray-200">
@@ -70,6 +73,8 @@ const CartContainer = () => {
                                     imgUrl={item.imgUrl}
                                     price={item.price}
                                     quantity={item.quantity}
+
+                                    onDelete={onDelete}
                                 />
                             )
                         }  

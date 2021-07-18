@@ -13,7 +13,7 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () =>{
     setProducts([]);
-    return true;
+    return [];
   }
 
   const isInCart = (id) =>{
@@ -31,7 +31,6 @@ export const CartProvider = ({ children }) => {
   }
 
   const removeFromCart = (id)=>{
-    //devolvemos el array productos en el carrito, filtrando solo items que no tengan el ID solicitado
     let filteredCart = products.filter( (item) =>{
         return item["id"] !== id
     });
@@ -42,8 +41,7 @@ export const CartProvider = ({ children }) => {
   const itemsInCart = products.length;
   
   return (
-    <CartContext.Provider value={{ products, addItem, clearCart, isInCart, itemsInCart, removeFromCart, qtyInCart }}>
-      {console.table(products)}
+    <CartContext.Provider value={{ products, addItem, clearCart, isInCart, itemsInCart, removeFromCart, qtyInCart }}>      
       {children}
     </CartContext.Provider>
   );
