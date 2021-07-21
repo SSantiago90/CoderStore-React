@@ -1,14 +1,52 @@
+import { getFirestore } from "../firebase";
+
 import React, { useState, useEffect } from "react";
-import CartItem from "./CartItem";
 import useCartContext from "../context/CartContext";
+import CartItem from "./CartItem";
 import OrderForm from "./OrderForm";
 
 const CartContainer = () => {
   const { products, removeFromCart, getTotal} = useCartContext();
   const [cartItems, setCartItems] = useState(null);
+  const [isBuyReady, setBuyReady] = useState(true);
+
+  function createOrder(buyer,evt) {    
+    evt.preventDefault();
+    let db = getFirestore();
+    let ISOdate = new Date().toISOString();
+    let total = getTotal();
+    //map items from firebase
+    let itemlist = [];
+    products.forEach( (item)=>{
+      itemlist.push(
+        {id: item.id,
+         titel: item.title,
+         price: item.price,
+         quantity: item.quantity}
+      );
+    });
+
+    db.collection("orders")
+      .add({
+        buyer: buyer,
+        items: itemlist,
+        date: ISOdate,
+        total: total,
+      })
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+  }
 
   function onDelete(id) {
     setCartItems(removeFromCart(id));
+  }
+
+  function cancelForm(){
+    setBuyReady(false);
   }
 
   useEffect(() => {
@@ -86,16 +124,21 @@ const CartContainer = () => {
                   </tr>
                 </tfoot>
               </table>
+              {!isBuyReady?
               <div className="mt-8">
-                <button className="flex mx-auto mt-2 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
+                <button onClick={()=>setBuyReady(true)}className="flex mx-auto mt-2 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
                   Comprar
                 </button>
               </div>
+              : 
+              <div className="mt-8">
+                <OrderForm handleSubmit={createOrder} cancelForm={cancelForm}/>
+              </div>
+              }
             </div>
           )}
         </div>
       </div>
-      <OrderForm />
     </section>
   );
 };
