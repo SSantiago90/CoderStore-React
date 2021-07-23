@@ -119,8 +119,8 @@ const CartContainer = () => {
                 </tbody>
                 <tfoot className="justify-between">
                     <tr className="bg-red-600 text-white">
-                    <td className="px-8 py-3 text-right ml-2 font-bold" colspan="4">Total</td>
-                    <td className="px-8 py-3 text-left ml-2 font-bold" colspan="2">$ {getTotal().toFixed(2)}</td>
+                    <td className="px-8 py-3 text-right ml-2 font-bold" colSpan="4">Total</td>
+                    <td className="px-8 py-3 text-left ml-2 font-bold" colSpan="2">$ {getTotal().toFixed(2)}</td>
                   </tr>
                 </tfoot>
               </table>
