@@ -10,9 +10,9 @@ const Item = (props) => {
                 <img className="object-contain bg-placeholder h-60 rounded w-full object-center mb-6" src={props.imgUrl} alt={props.title}/>
             </Link>
                 <h3 className="h-20 tracking-widest text-grey-800 font-bold title-font">{props.title}</h3>
-                <h2 className="text-lg text-red-600 font-medium title-font mb-4">${props.price}</h2>
+                <h2 className="text-lg text-indigo-600 font-medium title-font mb-4">${props.price}</h2>
                 <p className="leading-relaxed text-base">{props.description}</p>
-                <Link to={`/products/${props.id}`} className="text-red-500 inline-flex items-center mt-3">Ver más</Link>
+                <Link to={`/products/${props.id}`} className="text-indigo-500 inline-flex items-center mt-3">Ver más</Link>
             </div>
          </div>
     );

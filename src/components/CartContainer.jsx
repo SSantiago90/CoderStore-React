@@ -61,7 +61,7 @@ const CartContainer = () => {
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-12 mx-auto">
         <div className="flex flex-col text-center w-full mb-12">
-          <h1 className="sm:text-3xl uppercase text-2xl font-large title-font mb-8 text-red-600">
+          <h1 className="sm:text-3xl uppercase text-2xl font-large title-font mb-8 text-indigo-600">
             Carrito
           </h1>
           <hr />
@@ -71,7 +71,7 @@ const CartContainer = () => {
           {!cartItems && <h3>CARGANDO . . .</h3>}
 
           {cartItems && cartItems.length === 0 && (
-            <span className="w-2/3 text-center m-auto block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest">
+            <span className="w-2/3 text-center m-auto block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest">
               Tu carrito está vacío
             </span>
           )}
@@ -115,10 +115,10 @@ const CartContainer = () => {
                         quantity={item.quantity}
                         onDelete={onDelete}
                       />
-                    ))}
+                    ))} 
                 </tbody>
                 <tfoot className="justify-between">
-                    <tr className="bg-red-600 text-white">
+                    <tr className="bg-indigo-600 text-white">
                     <td className="px-8 py-3 text-right ml-2 font-bold" colSpan="4">Total</td>
                     <td className="px-8 py-3 text-left ml-2 font-bold" colSpan="2">$ {getTotal().toFixed(2)}</td>
                   </tr>

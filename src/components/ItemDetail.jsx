@@ -34,7 +34,7 @@ export default function ItemDetail(props) {
               {props.title}
             </h1>
             <div className="flex mb-4">
-              <a className="flex-grow text-red-500 border-b-2 border-red-500 py-2 text-lg px-1">
+              <a className="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
                 Descripción
               </a>
             </div>
@@ -52,7 +52,7 @@ export default function ItemDetail(props) {
               <span className="ml-auto text-gray-900">{props.stock}</span>
             </div>
             <div className="flex">
-              <span className="title-font font-bold text-2xl text-red-600">
+              <span className="title-font font-bold text-2xl text-indigo-600">
                 ${props.price}
               </span>              
             </div>
@@ -80,7 +80,7 @@ export default function ItemDetail(props) {
         </div>
         <button
           onClick={() => navig.go(-1)}
-          className="flex-shrink-0 text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mt-10 sm:mt-0"
+          className="flex-shrink-0 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-10 sm:mt-0"
         >
           Volver
         </button>

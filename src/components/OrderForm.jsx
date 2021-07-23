@@ -34,15 +34,15 @@ const OrderForm = (props) => {
       <form onSubmit={(evt)=> props.handleSubmit(buyer,evt)}>
       <div className="relative mb-4">
         <label for="email" className="leading-7 text-sm text-gray-600">Nombre y apellido</label>
-        <input value={buyer.name}onChange={handleInputChange} required type="text" id="fullname" name="fullname" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input value={buyer.name}onChange={handleInputChange} requiindigo type="text" id="fullname" name="fullname" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
       <div className="relative mb-4">
         <label for="message" className="leading-7 text-sm text-gray-600">E-mail</label>
-        <input value={buyer.email}onChange={handleInputChange} required type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input value={buyer.email}onChange={handleInputChange} requiindigo type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
       <div className="relative mb-4">
         <label for="message" className="leading-7 text-sm text-gray-600">Teléfono</label>
-        <input value={buyer.phone}onChange={handleInputChange}  type="tel" id="tel" name="tel" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input value={buyer.phone}onChange={handleInputChange}  type="tel" id="tel" name="tel" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
       <div className="container flex space-around">
         <button type="submit" className="text-white mr-2 w-1/2 bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Finalizar Compra</button>

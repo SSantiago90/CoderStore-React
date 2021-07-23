@@ -15,7 +15,7 @@ const CartWidget = () => {
             <FontAwesomeIcon icon={faShoppingCart} />
           </Link>
           {itemsInCart > 0 &&
-          <div className="w-10 ml-2 h-8 inline-flex items-center justify-center rounded-full bg-red-500 text-red-100 mb-1">
+          <div className="w-10 ml-2 h-8 inline-flex items-center justify-center rounded-full bg-indigo-500 text-indigo-100 mb-1">
               <p>{itemsInCart}</p>
           </div> 
           }

@@ -26,7 +26,7 @@ const CartItem = (props) => {
       <td className="px-6 py-2">
         <span>{props.quantity}</span>
       </td>
-      <td className="px-4 py-2 text-red-600 font-bold">
+      <td className="px-4 py-2 text-indigo-600 font-bold">
         <span>{`$ ${totalPrice}`}</span>
       </td>
       <td className="px-4 py-2 text-center">

@@ -58,7 +58,6 @@ export const CartProvider = ({ children }) => {
     } else {
       totalPrice = products[0].price * products[0].quantity;
     }
-    console.log("total price", totalPrice);
     return totalPrice;
   }
 
