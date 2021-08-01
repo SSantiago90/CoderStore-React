@@ -5,11 +5,13 @@ import {useHistory} from 'react-router-dom';
 import useCartContext from "../context/CartContext";
 import CartItem from "./CartItem";
 import OrderForm from "./OrderForm";
+import Modal from "./Modal";
+import { faGlasses } from "@fortawesome/free-solid-svg-icons";
 
 const CartContainer = () => {
   const { products, removeFromCart, clearCart, getTotal } = useCartContext();
   const [cartItems, setCartItems] = useState(null);
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
   const [submiting, setSubmiting] = useState(false);
   const navigation = useHistory();
 
@@ -163,12 +165,12 @@ const CartContainer = () => {
                   </button>
                 </div>
               ) : (
-                <div className="mt-8">
+                <Modal open={showForm}>
                   <OrderForm
                     handleSubmit={createOrder}
                     cancelForm={cancelForm}
                   />
-                </div>
+                </Modal>
               )}
             </div>
           )}
