@@ -1,29 +1,35 @@
 import { getFirestore } from "../firebase";
 
 import React, { useState, useEffect } from "react";
+import {useHistory} from 'react-router-dom';
 import useCartContext from "../context/CartContext";
 import CartItem from "./CartItem";
 import OrderForm from "./OrderForm";
 
 const CartContainer = () => {
-  const { products, removeFromCart, getTotal} = useCartContext();
+  const { products, removeFromCart, clearCart, getTotal } = useCartContext();
   const [cartItems, setCartItems] = useState(null);
-  const [isBuyReady, setBuyReady] = useState(true);
+  const [showForm, setShowForm] = useState(true);
+  const [submiting, setSubmiting] = useState(false);
+  const navigation = useHistory();
 
-  function createOrder(buyer,evt) {    
+  function createOrder(buyer, evt) {
     evt.preventDefault();
+    setSubmiting(true);
+    setShowForm(false);
     let db = getFirestore();
     let ISOdate = new Date().toISOString();
     let total = getTotal();
+
     //map items from firebase
     let itemlist = [];
-    products.forEach( (item)=>{
-      itemlist.push(
-        {id: item.id,
-         titel: item.title,
-         price: item.price,
-         quantity: item.quantity}
-      );
+    products.forEach((item) => {
+      itemlist.push({
+        id: item.id,
+        titel: item.title,
+        price: item.price,
+        quantity: item.quantity,
+      });
     });
 
     db.collection("orders")
@@ -34,10 +40,21 @@ const CartContainer = () => {
         total: total,
       })
       .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
+        clearCart();
+        navigation.push({
+          pathname: '/checkout', 
+          state: {'id': docRef.id} 
+        });
       })
       .catch((error) => {
-        console.error("Error adding document: ", error);
+        navigation.push({
+          pathname: '/checkout', 
+          errorMsg: error
+        });
+        
+      })
+      .finally(() => {
+        setSubmiting(false);
       });
   }
 
@@ -45,8 +62,8 @@ const CartContainer = () => {
     setCartItems(removeFromCart(id));
   }
 
-  function cancelForm(){
-    setBuyReady(false);
+  function cancelForm() {
+    setShowForm(false);
   }
 
   useEffect(() => {
@@ -68,7 +85,7 @@ const CartContainer = () => {
         </div>
 
         <div className="flex flex-wrap sm:-m-4 -mx-8 -mb-10">
-          {!cartItems && <h3>CARGANDO . . .</h3>}
+          {!cartItems && !submiting && <h3>CARGANDO . . .</h3>}
 
           {cartItems && cartItems.length === 0 && (
             <span className="w-2/3 text-center m-auto block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest">
@@ -76,7 +93,9 @@ const CartContainer = () => {
             </span>
           )}
 
-          {cartItems && cartItems.length !== 0 && (
+          {submiting && <h3>ENVIANDO . . .</h3>}
+
+          {cartItems && cartItems.length !== 0 && !submiting && (
             <div className="m-auto">
               <table className="min-w-full table-auto">
                 <thead className="justify-between">
@@ -115,26 +134,42 @@ const CartContainer = () => {
                         quantity={item.quantity}
                         onDelete={onDelete}
                       />
-                    ))} 
+                    ))}
                 </tbody>
                 <tfoot className="justify-between">
-                    <tr className="bg-indigo-600 text-white">
-                    <td className="px-8 py-3 text-right ml-2 font-bold" colSpan="4">Total</td>
-                    <td className="px-8 py-3 text-left ml-2 font-bold" colSpan="2">$ {getTotal().toFixed(2)}</td>
+                  <tr className="bg-indigo-600 text-white">
+                    <td
+                      className="px-8 py-3 text-right ml-2 font-bold"
+                      colSpan="4"
+                    >
+                      Total
+                    </td>
+                    <td
+                      className="px-8 py-3 text-left ml-2 font-bold"
+                      colSpan="2"
+                    >
+                      $ {getTotal().toFixed(2)}
+                    </td>
                   </tr>
                 </tfoot>
               </table>
-              {!isBuyReady?
-              <div className="mt-8">
-                <button onClick={()=>setBuyReady(true)}className="flex mx-auto mt-2 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
-                  Comprar
-                </button>
-              </div>
-              : 
-              <div className="mt-8">
-                <OrderForm handleSubmit={createOrder} cancelForm={cancelForm}/>
-              </div>
-              }
+              {!showForm ? (
+                <div className="mt-8">
+                  <button
+                    onClick={() => setShowForm(true)}
+                    className="flex mx-auto mt-2 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
+                  >
+                    Comprar
+                  </button>
+                </div>
+              ) : (
+                <div className="mt-8">
+                  <OrderForm
+                    handleSubmit={createOrder}
+                    cancelForm={cancelForm}
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>

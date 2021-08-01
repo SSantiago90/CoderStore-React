@@ -19,3 +19,25 @@ export function getFirebase(){
 export function getFirestore() {
     return firebase.firestore(app);
 }
+
+export function getOrder(id){
+    const db = getFirestore();
+    let order;
+    const orderRef = db.collection("orders").doc(id);
+
+    orderRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          order = ({ id, ...doc.data() });
+          console.log('founf');
+        } else{
+        order = null;
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+
+      return order;
+}
