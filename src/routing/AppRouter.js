@@ -16,7 +16,7 @@ export default function AppRouter() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route exact path="/" render={(props) => <Home title={greeting} />} />
+        <Route exact path="/" component={Home}/>
         <Route path="/about" component={About} />
         <Route path="/products/:id" component={Detail} />
         <Route exact path="/category/:category" component={Category} />
