@@ -2,24 +2,11 @@ import React, { useState, useEffect} from 'react';
 import CartItem from './CartItem';
 import useCartContext from "../context/CartContext";
 
-
-const CartContainer = () => {
-    const {products, removeFromCart} = useCartContext();
-    const [cartItems , setCartItems] = useState(null);
-
-    function onDelete(id){
-        setCartItems(removeFromCart(id));        
-    }
+const CartView = () => {
     
-    useEffect(() => {        
-        if (products){
-            setCartItems(products)
-        }
-        else {
-            setCartItems([]);        
-        }
-    }, [products]);
-
+    //obtenemos productos de nuestro context
+    const {products, removeFromCart} = useCartContext();       
+        
     return (
          <section className="text-gray-600 body-font">
             <div className="container px-5 py-12 mx-auto">
@@ -28,14 +15,15 @@ const CartContainer = () => {
                     <hr />
                 </div>   
             
-                <div className="flex flex-wrap sm:-m-4 -mx-8 -mb-10">
-                {!cartItems && <h3>CARGANDO . . .</h3>}
+                <div className="flex flex-wrap sm:-m-4 -mx-8 -mb-10">           
 
-                {cartItems && cartItems.length === 0 &&
-                    <span className="w-2/3 text-center m-auto block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest">Tu carrito está vacío</span>             
+                {products && products.length === 0 &&
+                <span className="w-2/3 text-center m-auto block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest">
+                    Tu carrito está vacío
+                </span>             
                 }
                 
-                {cartItems && cartItems.length !== 0 &&     (           
+                {products && products.length !== 0 &&     (           
                 
                 <div className="m-auto">
                     <table className="min-w-full table-auto">
@@ -65,16 +53,16 @@ const CartContainer = () => {
                         </thead>
                         <tbody className="bg-gray-200">
                                        
-                        {cartItems && cartItems.map( (item,index) =>
+                        {products && products.map( (item) =>
                                 <CartItem          
-                                    key={index}                 
+                                    key={item.id}                 
                                     id={item.id}
                                     title={item.title}
                                     imgUrl={item.imgUrl}
                                     price={item.price}
                                     quantity={item.quantity}
 
-                                    onDelete={onDelete}
+                                    onDelete={(id)=>removeFromCart(id)}
                                 />
                             )
                         }  
@@ -96,4 +84,5 @@ const CartContainer = () => {
     );
 }
 
-export default CartContainer;
+
+export default CartView;

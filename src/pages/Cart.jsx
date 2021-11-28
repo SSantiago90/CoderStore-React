@@ -1,9 +1,9 @@
 import React from "react";
-import CartContainer from "../components/CartContainer";
+import CartView from "../components/CartView";
 
 function Cart(props) {
   return (    
-      <CartContainer/>
+      <CartView/>
   );
 }
 
