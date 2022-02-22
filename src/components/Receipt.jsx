@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import receiptImg from '../assets/img/bill.svg';
 import {Link} from 'react-router-dom';
 

@@ -6,7 +6,6 @@ import useCartContext from "../context/CartContext";
 import CartItem from "./CartItem";
 import OrderForm from "./OrderForm";
 import Modal from "./Modal";
-import { faGlasses } from "@fortawesome/free-solid-svg-icons";
 
 const CartContainer = () => {
   const { products, removeFromCart, clearCart, getTotal } = useCartContext();
@@ -165,10 +164,10 @@ const CartContainer = () => {
                   </button>
                 </div>
               ) : (
-                <Modal open={showForm}>
+                <Modal open={showForm} handleClose={cancelForm}>
                   <OrderForm
                     handleSubmit={createOrder}
-                    cancelForm={cancelForm}
+                    handleCancel={cancelForm}
                   />
                 </Modal>
               )}

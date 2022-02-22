@@ -1,9 +1,9 @@
 import React from "react";
 import ItemListContainer from "../components/ItemListContainer";
 
-function Home(props) {
+function Home() {
   return (    
-      <ItemListContainer title={props.title}  />
+      <ItemListContainer title="Bienvenidos a nuestro E-Commerce"/>
   );
 }
 

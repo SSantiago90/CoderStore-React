@@ -10,8 +10,6 @@ import Checkout from "../pages/Checkout";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 export default function AppRouter() {
-  let greeting = "Bienvenido a la tienda";
-
   return (
     <BrowserRouter>
       <NavBar />
