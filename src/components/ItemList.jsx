@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import Item from './Item';
-import {getFirestore} from '../firebase';
 import {useParams} from 'react-router-dom';
+import {getFirestore} from '../firebase';
+
+import Item from './Item';
+import Spinner from "./Spinner";
 
 function ItemList(){
   const [items,setItems] = useState(null);    
@@ -40,7 +42,7 @@ function ItemList(){
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-6 mx-auto">        
                 <div className="flex flex-wrap sm:-m-4 -mx-8 -mb-10">
-                { isLoading && <h3>CARGANDO . . .</h3>}
+                { isLoading &&<Spinner/>}
                 { items && items.length === 0 &&
                   <div><span><p>SIN RESULTADOS</p></span></div>
                 }
