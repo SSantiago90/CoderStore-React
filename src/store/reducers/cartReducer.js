@@ -7,17 +7,14 @@ function cartReducer(state = [{ id: 1, title: "hola", qty: 5 }], action) {
             // we use immer to avoid mutating the state
             return produce(state, draft => {
                 draft.push(action.payload);
+            }); 
+        case actions.REMOVE_FROM_CART:
+            const filter =  produce(state, draft => {
+                draft.filter( item => item.id !== action.payload.id);
             });
-     /*    case actions.ADD_TO_CART:
-            return [
-                ...state,
-                {
-                    description: action.payload.description,
-                    itemId: action.payload.id,
-                }
-            ]; */
+            return filter;
         case actions.CLEAR_CART:
-            return [];
+            return [];            
         case actions.GET_CART:
             return state;
         default:
@@ -26,11 +23,3 @@ function cartReducer(state = [{ id: 1, title: "hola", qty: 5 }], action) {
 }
 
 export default cartReducer;
-
-/*  Do we need this?
-    case actions.ITEMS_IN_CART:
-        [state.reduce((acc, item) => {
-        acc.push(item.qty);
-        return acc;
-    }, [])]; 
-*/

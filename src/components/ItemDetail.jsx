@@ -1,21 +1,18 @@
 import React from "react";
 import ItemCount from "./ItemCount";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useCartContext from "../context/CartContext";
+import NavigationArrows from "./NavigationArrows";
 
 import ImageLoader from "./loaders/ImgLoader";
-import './styles/loaders.css';
+import "./styles/loaders.css";
 
 import OnImagesLoaded from "react-on-images-loaded";
-
-import {  faArrowCircleLeft,  faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ItemDetail(props) {
   const { addItem, isInCart, qtyInCart } = useCartContext();
   const [imgLoaded, setImgLoaded] = React.useState(false);
-  const navig = useHistory();
+
 
   function onAdd(countValue) {
     isInCart(props.id)
@@ -23,17 +20,16 @@ export default function ItemDetail(props) {
       : addItem(props, countValue);
   }
 
-
   return (
     <section className="relative text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <div className="lg:w-1/2 w-full lg:h-auto h-32 object-scale-down object-center rounded self-center">
-            <OnImagesLoaded onLoaded={()=> setImgLoaded(true)} >        
-            <div className={imgLoaded ? 'hidden-false' : 'hidden-true'}>
-                <img alt={props.title} className="image" src={props.imgUrl}/>
-            </div>
-              {  !imgLoaded && <ImageLoader /> }      
+            <OnImagesLoaded onLoaded={() => setImgLoaded(true)}>
+              <div className={imgLoaded ? "hidden-false" : "hidden-true"}>
+                <img alt={props.title} className="image" src={props.imgUrl} />
+              </div>
+              {!imgLoaded && <ImageLoader />}
             </OnImagesLoaded>
           </div>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mb-6 lg:mb-0">
@@ -82,28 +78,11 @@ export default function ItemDetail(props) {
             )}
           </div>
         </div>
-        <button
-          onClick={() => navig.go(-1)}
-          className="flex-shrink-0 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-10 sm:mt-0"
-        >
+        <Link type="button" className="flex-shrink-0 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-10 sm:mt-0" to="/">
           Volver
-        </button>
+        </Link>
       </div>
-
-      <div className="absolute left-0 top-1/2">
-        <button
-          onClick={() => props.goNext(-1)}
-          disabled={props.index === 1}
-          className="w-2/4 text-grey-400"
-        >
-          <FontAwesomeIcon icon={faArrowCircleLeft} />
-        </button>
-      </div>
-      <div className="absolute right-0 top-1/2">
-        <button onClick={() => props.goNext(1)} className="w-2/4 text-grey-400">
-          <FontAwesomeIcon icon={faArrowCircleRight} />
-        </button>
-      </div>
+     <NavigationArrows goNext={props.goNext} from={props.index} />
     </section>
   );
 }
