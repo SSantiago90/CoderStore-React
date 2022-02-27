@@ -1,0 +1,14 @@
+.hidden, .hidden-true, .hidden-false {
+    animation-timing-function: cubic-bezier(0.1, 0.8, 0.1, 1);
+    transition: opacity 850ms ease-in-out;
+  }
+  
+  .hidden-true {
+    opacity: 0;
+    height: 0px;
+    overflow: hidden;
+  }
+  
+  .hidden-false {
+    opacity: 1;
+  }
