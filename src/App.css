@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+/* Loader image fallback */
+
+.img-loader {
+   width: 300;
+    height: 300;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif');
+}

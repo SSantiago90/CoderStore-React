@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import {getFirestore} from '../firebase';
 
 import Item from './Item';
-import Spinner from "./Spinner";
+import ItemLoaderContainer from "./loaders/ItemLoaderContainer";
 
 function ItemList(){
   const [items,setItems] = useState(null);    
@@ -41,8 +41,10 @@ function ItemList(){
     return (
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-6 mx-auto">        
-                <div className="flex flex-wrap sm:-m-4 -mx-8 -mb-10">
-                { isLoading &&<Spinner/>}
+                <div className="flex flex-wrap sm:-m-4 -mx-8 -mb-10">        
+              { isLoading &&                
+                    <ItemLoaderContainer count={8}/>                  
+                } 
                 { items && items.length === 0 &&
                   <div><span><p>SIN RESULTADOS</p></span></div>
                 }
@@ -57,6 +59,7 @@ function ItemList(){
                             imgUrl={itm.image}
                         />
                     )}  
+                  
                 </div>
             </div>
       </section>

@@ -21,11 +21,13 @@ export default function ItemDetail(props) {
     <section className="relative text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
+          <div className="img-loader lg:w-1/2 w-full lg:h-auto h-32 object-scale-down object-center rounded">
             <img
               alt={props.title}
-              className="lg:w-1/2 w-full lg:h-auto h-32 object-scale-down object-center rounded"
+              className=""
               src={props.imgUrl}
             />
+          </div>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mb-6 lg:mb-0">
             <h2 className="text-sm uppercase title-font text-gray-500 tracking-widest">
               {props.category}

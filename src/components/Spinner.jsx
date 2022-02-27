@@ -5,7 +5,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 export default function Spinner() {
     return (
-        <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">        
+        <div className="container mx-auto flex flex-col px-5 py-24 justify-center items-center">        
             <div className="animate-spin p-3">
                 <FontAwesomeIcon className="text-red-600" icon={faSpinner} size="6x" />        
             </div>

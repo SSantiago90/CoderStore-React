@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ItemDetail from "./ItemDetail";
 import { getFirestore } from "./../firebase";
 import { useParams, useHistory } from "react-router-dom";
-import Spinner from "./Spinner";
+import ItemDetailLoader from "./loaders/ItemDetailLoader";
 
 function ItemDetailContainer() {
   const { id } = useParams();
@@ -55,7 +55,7 @@ function ItemDetailContainer() {
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-6 mx-auto">
         <div className="flex flex-wrap sm:-m-4 -mx-8 -mb-10">
-          {isLoading && <Spinner/>}
+          {isLoading && <ItemDetailLoader/>}
           {notFound && <span>El item que buscás no está disponible.</span>}
           {item && (
             <div>
