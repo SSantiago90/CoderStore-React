@@ -1,7 +1,7 @@
 import * as actions from '../actions/cartActionTypes';
 import produce from "immer"
 
-function cartReducer(state = [{ id: "SKaEvOEMA92fpFoW7dXQ", title: "hola", qty: 5 }], action) {
+function cartReducer(state = [], action) {
     switch (action.type) {
         case actions.ADD_TO_CART:
             return [...state, action.payload.item];

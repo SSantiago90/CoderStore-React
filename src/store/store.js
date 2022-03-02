@@ -30,9 +30,9 @@ export function itemsInCart(id){
     }
     else
     {
-        return store.getState().reduce((acc, item) => {
-            acc.push(item.qty);
-            return acc;
+        return store.getState().reduce((acc = 0, item) => {
+            acc += item.quantity;
+            return Number(acc);
         }, []);
     }
 }
