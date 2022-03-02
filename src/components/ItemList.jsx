@@ -49,10 +49,9 @@ function ItemList(){
                   <div><span><p>SIN RESULTADOS</p></span></div>
                 }
              
-                { items && items.map( (itm,index) =>                
-                        <Item 
-                            
-                            key={index}
+                { items && items.map( (itm) =>                
+                        <Item                             
+                            key={itm.id}
                             id={itm.id}
                             title={itm.title}
                             price={itm.price}

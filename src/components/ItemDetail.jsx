@@ -1,23 +1,20 @@
 import React from "react";
-import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
-import useCartContext from "../context/CartContext";
-import NavigationArrows from "./NavigationArrows";
-
-import ImageLoader from "./loaders/ImgLoader";
-import "./styles/loaders.css";
-
 import OnImagesLoaded from "react-on-images-loaded";
 
+import ItemCount from "./ItemCount";
+import NavigationArrows from "./NavigationArrows";
+import ImageLoader from "./loaders/ImgLoader";
+import "./styles/loaders.css";
+import { itemsInCart } from "../store/store";
+
+
 export default function ItemDetail(props) {
-  const { addItem, isInCart, qtyInCart } = useCartContext();
+
   const [imgLoaded, setImgLoaded] = React.useState(false);
 
-
   function onAdd(countValue) {
-    isInCart(props.id)
-      ? alert("Ya agregaste ese item al carrito!")
-      : addItem(props, countValue);
+    props.onAdd( {...props, quantity: countValue});
   }
 
   return (
@@ -62,7 +59,7 @@ export default function ItemDetail(props) {
                 ${props.price}
               </span>
             </div>
-            {!isInCart(props.id) ? (
+            {! itemsInCart(props.id)? (
               <ItemCount stock={props.stock} initial={1} onAdd={onAdd} />
             ) : (
               <div>
@@ -71,7 +68,7 @@ export default function ItemDetail(props) {
                 </button>
                 <div className="text-center mt-2 leading-none flex-wrap justify-centerw-full py-2">
                   <span className="w-full block py-1 px-2 rounded bg-green-50 text-green-500 text-xs font-medium tracking-widest">
-                    Ya cargaste {qtyInCart(props.id)} en el carrito
+                    Ya cargaste {props.qtyInCart} en el carrito
                   </span>
                 </div>
               </div>

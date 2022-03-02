@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const ImgLoader = ({size = 96}) => {
     const sizeCSS = `m-auto rounded-full bg-gray-300 h-${size} w-${size}`;

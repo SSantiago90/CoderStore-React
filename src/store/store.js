@@ -1,7 +1,6 @@
 import { createStore } from "redux";
 import cartReducer from "./reducers/cartReducer";
 import * as actions from './actions/cartActionTypes';
-import { getAllItems } from '../firebase';
 
 const store = createStore(
     cartReducer,
@@ -19,17 +18,35 @@ export function addToCart(item){
     store.dispatch({    
         type: actions.ADD_TO_CART,
         payload: {
-            item : item
+            item : {...item}
         }
     });
 }
 
 // HELPERS
-export function itemsInCart(){
-    return store.getState().reduce((acc, item) => {
-        acc.push(item.qty);
-        return acc;
-    }, []);
+export function itemsInCart(id){
+    if(id) {        
+        return getItemInCart(id) && getItemInCart(id).quantity;
+    }
+    else
+    {
+        return store.getState().reduce((acc, item) => {
+            acc.push(item.qty);
+            return acc;
+        }, []);
+    }
+}
+
+export function isInCart(id){
+    return store.getState().some( item => {
+        return item.id === id;
+    });
+}
+
+export function getItemInCart(id){
+    return store.getState().find( item => {
+        return item.id === id;
+    });
 }
 
 export const storeActions = {...actions}

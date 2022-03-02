@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 import {
   faArrowCircleLeft,
@@ -9,8 +8,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function NavigationArrows({ goNext, from }) {
-  const navig = useHistory();
-
   return (
     <div>
       <div className="absolute left-0 top-1/2">
