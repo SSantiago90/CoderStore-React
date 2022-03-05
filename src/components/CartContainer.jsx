@@ -1,12 +1,14 @@
 import { getFirestore } from "../firebase";
-import React, { useState, useEffect } from "react";
 
+import React, { useState, useEffect } from "react";
 import {useHistory} from 'react-router-dom';
+import useCartContext from "../context/CartContext";
 import CartItem from "./CartItem";
 import OrderForm from "./OrderForm";
 import Modal from "./Modal";
 
-const CartContainer = () => {  
+const CartContainer = () => {
+  const { products, removeFromCart, clearCart, getTotal } = useCartContext();
   const [cartItems, setCartItems] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [submiting, setSubmiting] = useState(false);
