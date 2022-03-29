@@ -23,7 +23,21 @@ export function addToCart(item){
     });
 }
 
+export function removeFromCart(id){
+    store.dispatch({    
+        type: actions.REMOVE_FROM_CART,
+        payload: {
+            "id" : id
+        }
+    });
+}
+
 // HELPERS
+
+export function getCart(){
+    return store.getState();
+}
+
 export function itemsInCart(id){
     if(id) {        
         return getItemInCart(id) && getItemInCart(id).quantity;
@@ -47,6 +61,15 @@ export function getItemInCart(id){
     return store.getState().find( item => {
         return item.id === id;
     });
+}
+
+
+export function getTotalPrice(){
+    let total = 0;
+    store.getState().forEach( item => {
+        total += item.price * item.quantity;
+    })
+    return total;
 }
 
 export const storeActions = {...actions}

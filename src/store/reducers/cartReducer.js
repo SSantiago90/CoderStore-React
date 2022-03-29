@@ -6,9 +6,13 @@ function cartReducer(state = [], action) {
         case actions.ADD_TO_CART:
             return [...state, action.payload.item];
         case actions.REMOVE_FROM_CART:
-            const filter =  produce(state, draft => {
-                draft.filter( item => item.id !== action.payload.id);
+            const filter = produce(state, draft => {
+                return draft.filter( item => {
+                    console.log("filter", item.id, action.payload.id);
+                    return (item.id !== action.payload.id)
+                });               
             });
+            console.log(filter);
             return filter;
         case actions.CLEAR_CART:
             return [];            

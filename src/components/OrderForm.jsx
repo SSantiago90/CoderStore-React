@@ -1,9 +1,8 @@
 import React, {useRef, useState, useEffect} from "react";
-import useCartContext from "../context/CartContext";
+import { itemsInCart, getTotalPrice as getTotal } from "../store/store";
+
 
 const OrderForm = ({handleSubmit, handleCancel}) => {
-  const { itemsInCart, getTotal } = useCartContext();
-
   const [ buyer, setBuyer] = useState({
     name: "",
     email: "",
@@ -32,15 +31,15 @@ const OrderForm = ({handleSubmit, handleCancel}) => {
       <p className="leading-relaxed mb-5 text-gray-600">Ingresá tus datos para finalizar el proceso de compra.</p>
       <form onSubmit={(evt)=> handleSubmit(buyer,evt)}>
       <div className="relative mb-4">
-        <label for="email" className="leading-7 text-sm text-gray-600">Nombre y apellido</label>
+        <label htmlFor="email" className="leading-7 text-sm text-gray-600">Nombre y apellido</label>
         <input value={buyer.name} onChange={handleInputChange} required type="text" id="fullname" name="fullname" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
       <div className="relative mb-4">
-        <label for="message" className="leading-7 text-sm text-gray-600">E-mail</label>
+        <label htmlFor="message" className="leading-7 text-sm text-gray-600">E-mail</label>
         <input value={buyer.email}onChange={handleInputChange} required type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
       <div className="relative mb-4">
-        <label for="message" className="leading-7 text-sm text-gray-600">Teléfono</label>
+        <label htmlFor="message" className="leading-7 text-sm text-gray-600">Teléfono</label>
         <input value={buyer.phone}onChange={handleInputChange}  type="tel" id="tel" name="tel" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
       <div className="container flex space-around">

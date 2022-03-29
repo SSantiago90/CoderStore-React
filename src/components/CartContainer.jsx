@@ -1,15 +1,17 @@
 import { getFirestore } from "../firebase";
 
-import React, { useState, useEffect } from "react";
+import { clearCart, removeFromCart, getTotalPrice } from "../store/store";
+import {useSelector} from "react-redux";
+
+import React, { useState } from "react";
 import {useHistory} from 'react-router-dom';
-import useCartContext from "../context/CartContext";
 import CartItem from "./CartItem";
 import OrderForm from "./OrderForm";
 import Modal from "./Modal";
 
 const CartContainer = () => {
-  const { products, removeFromCart, clearCart, getTotal } = useCartContext();
-  const [cartItems, setCartItems] = useState(null);
+  const state = useSelector(state => state);
+
   const [showForm, setShowForm] = useState(false);
   const [submiting, setSubmiting] = useState(false);
   const navigation = useHistory();
@@ -20,11 +22,11 @@ const CartContainer = () => {
     setShowForm(false);
     let db = getFirestore();
     let ISOdate = new Date().toISOString();
-    let total = getTotal();
+    let total = getTotalPrice();
 
     //map items from firebase
     let itemlist = [];
-    products.forEach((item) => {
+    state.forEach((item) => {
       itemlist.push({
         id: item.id,
         titel: item.title,
@@ -60,20 +62,12 @@ const CartContainer = () => {
   }
 
   function onDelete(id) {
-    setCartItems(removeFromCart(id));
+    removeFromCart(id);
   }
 
   function cancelForm() {
     setShowForm(false);
   }
-
-  useEffect(() => {
-    if (products) {
-      setCartItems(products);
-    } else {
-      setCartItems([]);
-    }
-  }, [products]);
 
   return (
     <section className="text-gray-600 body-font">
@@ -86,9 +80,9 @@ const CartContainer = () => {
         </div>
 
         <div className="flex flex-wrap sm:-m-4 -mx-8 -mb-10">
-          {!cartItems && !submiting && <h3>CARGANDO . . .</h3>}
+          {!state && !submiting && <h3>CARGANDO . . .</h3>}
 
-          {cartItems && cartItems.length === 0 && (
+          {state && state.length === 0 && (
             <span className="w-2/3 text-center m-auto block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest">
               Tu carrito está vacío
             </span>
@@ -96,7 +90,7 @@ const CartContainer = () => {
 
           {submiting && <h3>ENVIANDO . . .</h3>}
 
-          {cartItems && cartItems.length !== 0 && !submiting && (
+          {state && state.length !== 0 && !submiting && (
             <div className="m-auto">
               <table className="min-w-full table-auto">
                 <thead className="justify-between">
@@ -124,8 +118,8 @@ const CartContainer = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-gray-200">
-                  {cartItems &&
-                    cartItems.map((item, index) => (
+                  {state &&
+                    state.map((item, index) => (
                       <CartItem
                         key={index}
                         id={item.id}
@@ -149,7 +143,7 @@ const CartContainer = () => {
                       className="px-8 py-3 text-left ml-2 font-bold"
                       colSpan="2"
                     >
-                      $ {getTotal().toFixed(2)}
+                      $ {getTotalPrice().toFixed(2)}
                     </td>
                   </tr>
                 </tfoot>
